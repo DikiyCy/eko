@@ -1,0 +1,79 @@
+@mixin mx($size: '') {
+  &.mx-#{$size} {
+    margin-right: #{$size}px;
+    margin-left: #{$size}px;
+  }
+}
+@mixin ml($size: '') {
+  &.ml-#{$size} {
+    margin-left: #{$size}px;
+  }
+}
+@mixin mr($size: '') {
+  &.mr-#{$size} {
+    margin-right: #{$size}px;
+  }
+}
+@mixin my($size: '') {
+  &.my-#{$size} {
+    margin-top: #{$size}px;
+    margin-bottom: #{$size}px;
+  }
+}
+@mixin mt($size: '') {
+  &.mt-#{$size} {
+    margin-top: #{$size}px;
+  }
+}
+@mixin mb($size: '') {
+  &.mb-#{$size} {
+    margin-bottom: #{$size}px;
+  }
+}
+
+@include mx(10);
+@include ml(10);
+@include mr(10);
+@include my(10);
+@include mt(10);
+@include mb(10);
+
+@mixin px($size: '') {
+  &.px-#{$size} {
+    padding-right: #{$size}px;
+    padding-left: #{$size}px;
+  }
+}
+@mixin pl($size: '') {
+  &.pl-#{$size} {
+    padding-left: #{$size}px;
+  }
+}
+@mixin pr($size: '') {
+  &.pr-#{$size} {
+    padding-right: #{$size}px;
+  }
+}
+@mixin py($size: '') {
+  &.py-#{$size} {
+    padding-top: #{$size}px;
+    padding-bottom: #{$size}px;
+  }
+}
+@mixin pt($size: '') {
+  &.pt-#{$size} {
+    padding-top: #{$size}px;
+  }
+}
+@mixin pb($size: '') {
+  &.pb-#{$size} {
+    padding-bottom: #{$size}px;
+  }
+}
+
+@include px(10);
+@include pl(10);
+@include pr(10);
+@include py(10);
+@include pt(10);
+@include pb(10);

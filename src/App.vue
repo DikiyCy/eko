@@ -1,32 +1,95 @@
 <template>
   <div id="app">
+    <HeaderBlock
+      :isActiveInfo="isActiveHeader"
+      @update="updateACtive()"
+    />
+
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <button
+        @click="clickMain()"
+      >
+        Main
+      </button>
+
+      <button
+        @click="clickLogin()"
+      >
+        Login
+      </button>
+
+      <!-- <router-link to="/">Main</router-link> |
+      <router-link to="/login">Login</router-link> -->
     </div>
     <router-view/>
+    <FooterBlock
+      class="footer"
+    />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+// import Button from './components/core/Button.vue';
+import { mapState } from 'vuex';
+import HeaderBlock from './components/Header.vue';
+import FooterBlock from './components/Footer.vue';
 
-#nav {
-  padding: 30px;
+export default {
+  name: 'app',
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  components: {
+    HeaderBlock,
+    FooterBlock,
+    // Button,
+  },
 
-    &.router-link-exact-active {
-      color: #42b983;
+  data() {
+    return {
+      isActiveHeader: false,
+    };
+  },
+
+  computed: {
+    ...mapState([
+      'login',
+    ]),
+  },
+
+  methods: {
+    clickMain() {
+      this.$router.push({ name: 'Main' });
+      console.log('login in main page');
+      this.isActiveHeader = true;
+    },
+
+    clickLogin() {
+      this.$router.push({ name: 'Login' });
+      console.log('login page');
+      this.isActiveHeader = false;
+    },
+
+    updateACtive() {
+      this.isActiveHeader = false;
+    },
+
+    chec() {
+      console.log('login', this.login)
     }
   }
+}
+</script>
+
+<style lang="scss">
+
+#app {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  min-height: 100vh;
+}
+
+.footer {
+  margin-top: auto;
 }
 </style>
