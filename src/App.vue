@@ -5,23 +5,10 @@
       @update="updateACtive()"
     />
 
-    <div id="nav">
-      <button
-        @click="clickMain()"
-      >
-        Main
-      </button>
-
-      <button
-        @click="clickLogin()"
-      >
-        Login
-      </button>
-
-    </div>
     <router-view
       @login="clickMain()"
     />
+
     <FooterBlock
       class="footer"
     />
@@ -67,10 +54,6 @@ export default {
     updateACtive() {
       this.isActiveHeader = false;
     },
-
-    chec() {
-      console.log('login', this.login)
-    }
   }
 }
 </script>
