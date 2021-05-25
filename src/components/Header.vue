@@ -18,13 +18,13 @@
       >
         Ваш логин: {{ login }}
       </div>
-    </template >
 
       <Button
         @clicked="logout()"
       >
         Выход
       </Button>
+    </template >
 
   </header>
 </template>

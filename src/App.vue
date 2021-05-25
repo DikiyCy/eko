@@ -40,6 +40,10 @@ export default {
     ]),
   },
 
+  beforeCreate() {
+    this.$router.push({ name: 'Login' });
+  },
+
   methods: {
     clickMain() {
       this.$router.push({ name: 'Main' });
