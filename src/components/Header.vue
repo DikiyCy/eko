@@ -18,13 +18,13 @@
       >
         Ваш логин: {{ login }}
       </div>
+    </template >
 
       <Button
         @clicked="logout()"
       >
         Выход
       </Button>
-    </template >
 
   </header>
 </template>
@@ -69,7 +69,6 @@ export default {
 
   methods: {
     logout() {
-      console.log('logout from main page');
       this.isActive = false;
       this.$router.push({ name: 'Login' });
       this.$emit('update');

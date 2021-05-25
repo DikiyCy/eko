@@ -127,7 +127,8 @@
 import { mapActions, mapGetters } from 'vuex';
 import Input from '../components/core/Input.vue';
 import Button from '../components/core/Button.vue';
-import auth from '../modules/auth.js'
+import server from '../modules/server.js'
+import answerServer from '../modules/answerFromServer.js';
 
 export default {
   name: 'Login',
@@ -152,20 +153,69 @@ export default {
 
   computed: {
     ...mapGetters([
-      'crypto'
-    ])
+      'crypto',
+    ]),
   },
 
   methods: {
     ...mapActions([
       'actionLogin',
+      'actionAuth',
+      'actionAnswer',
     ]),
 
     sendAuth() {
-      this.actionLogin(this.login);
-      console.log('crypto:', this.crypto)
-      auth.authFunc(this.login, this.password, this.crypto);
-    }
+        server.auth(this.login, this.password, this.crypto)
+          .then((res) => {
+
+            if (!res[0].err) {
+
+              alert('Вход в систему');
+              this.actionAuth(res);
+
+              if (res.id_login !== 0) {
+
+                server.enter(res[0].id_login, res[0].TK, this.crypto)
+                  .then((res) => {
+
+                    if (!res.errorType) {
+
+                      this.actionAnswer(res);
+                      this.$emit('login');
+
+                    } else {
+
+                      throw new Error(`Could not fetch`);
+
+                    }
+
+                  })
+                  .catch(() => {
+
+                    alert('Ошибка, проверьте данные или свяжитесь с разработчиками');
+
+                    // @todo - реализация для теста, если не работает апи
+                    alert('Использую ответ с локального хранилища');
+                    this.actionAnswer(answerServer);
+                    this.$emit('login');
+
+                  });
+
+              }
+
+            this.actionAnswer(res);
+
+            } else {
+              throw new Error(`Could not fetch `);
+            }
+
+          })
+          .catch(() => {
+            alert('Ошибка входных данных');
+          });
+
+        this.actionLogin(this.login);
+    },
 
   },
 }

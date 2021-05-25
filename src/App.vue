@@ -18,10 +18,10 @@
         Login
       </button>
 
-      <!-- <router-link to="/">Main</router-link> |
-      <router-link to="/login">Login</router-link> -->
     </div>
-    <router-view/>
+    <router-view
+      @login="clickMain()"
+    />
     <FooterBlock
       class="footer"
     />
@@ -29,7 +29,6 @@
 </template>
 
 <script>
-// import Button from './components/core/Button.vue';
 import { mapState } from 'vuex';
 import HeaderBlock from './components/Header.vue';
 import FooterBlock from './components/Footer.vue';
@@ -40,7 +39,6 @@ export default {
   components: {
     HeaderBlock,
     FooterBlock,
-    // Button,
   },
 
   data() {
@@ -58,13 +56,11 @@ export default {
   methods: {
     clickMain() {
       this.$router.push({ name: 'Main' });
-      console.log('login in main page');
       this.isActiveHeader = true;
     },
 
     clickLogin() {
       this.$router.push({ name: 'Login' });
-      console.log('login page');
       this.isActiveHeader = false;
     },
 

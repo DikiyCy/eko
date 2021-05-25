@@ -43,10 +43,12 @@ export default {
   border-radius: 2px;
   padding: 8px 12px;
   outline: transparent;
-  color: $GRAY_3;
+  color: $GRAY_2;
+  font-family: $FONT_MAIN;
 
   &::placeholder {
-    color: $GRAY_3;
+    color: $GRAY_2;
+    font-family: $FONT_MAIN;
   }
 }
 </style>
